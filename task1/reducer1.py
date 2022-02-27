@@ -7,9 +7,8 @@ dict_ip_count = {}
 dict_time_count = {}
 
 for line in sys.stdin:
-    time = line[0]
-    ip = line[1][0]
-    num = line[1][1]
+    line = line.strip()
+    time,ip,num = line.split('\t')
     try:
         num = int(num)
         if time in dict_time_count:

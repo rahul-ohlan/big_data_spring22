@@ -13,4 +13,4 @@ for line in sys.stdin:
         ip = data[7:]
         ip,num = ip.split('\t')
         if (':' not in ip) and (ip.count('.')==3):
-        print(time,(ip,num))
+        print(time+'\t'+ip+'\t'+num)
