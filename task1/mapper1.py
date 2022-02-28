@@ -2,6 +2,7 @@
 # --*-- coding:utf-8 --*--
 import re
 import sys
+import errno
 
 pat = re.compile('(?P<ip>\d+.\d+.\d+.\d+).*?\d{4}:(?P<hour>\d{2}):\d{2}.*? ')
 for line in sys.stdin:
@@ -12,5 +13,10 @@ for line in sys.stdin:
         time = data[1:6]
         ip = data[7:]
         ip,num = ip.split('\t')
-        if (':' not in ip) and (ip.count('.')==3):
-        print(time+'\t'+ip+'\t'+num)
+        try:
+            if (':' not in ip) and (ip.count('.')==3):
+                print(time+'\t'+ip+'\t'+num)
+        except IOError as e:
+            if e.errno == errno.EPIPE:
+                pass
+

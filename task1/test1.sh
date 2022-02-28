@@ -1,14 +1,29 @@
-#!/bin/bash
-../../start.sh
-/usr/local/hadoop/bin/hdfs dfs -rm -r /task1/input/
-/usr/local/hadoop/bin/hdfs dfs -rm -r /task1/output/
-/usr/local/hadoop/bin/hdfs dfs -mkdir -p /task1/input/
-/usr/local/hadoop/bin/hdfs dfs -copyFromLocal ../../mapreduce-test-data/access.log /task1/input/
-/usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.1.jar \
--file ../../mapreduce-test-python/task1/mapper.py -mapper ../../mapreduce-test-python/task1/mapper.py \
--file ../../mapreduce-test-python/logstat/reducer.py -reducer ../../mapreduce-test-python/task1/reducer.py \
--input /task1/input/* -output /task1/output/
-/usr/local/hadoop/bin/hdfs dfs -cat /task1/output/part-00000
-/usr/local/hadoop/bin/hdfs dfs -rm -r /task1/input/
-/usr/local/hadoop/bin/hdfs dfs -rm -r /task1/output/
-../../stop.sh
+#!/usr/bin/bash
+
+
+# start clusters
+start-all.sh
+
+# clear hdfs directory
+hadoop fs -rm -r /task1
+
+# copy input data to hdfs directory
+
+hadoop fs -mkdir /task1
+hadoop fs -put ./access.log /task1
+
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.1.jar \
+        -file ./mapper1.py -mapper ./mapper1.py \
+        -file ./reducer1.py -reducer ./reducer1.py \
+        -input /task1/access.log \
+        -output /task1/output
+
+# access the output
+
+hadoop fs -cat /task1/output/part-00000
+
+# clean file system
+hadoop fs -rm -r /task1
+
+# shut down clusters
+stop-all.sh

@@ -1,19 +1,19 @@
+#!/usr/bin/python
+
 import sys
 
 dict_ip_count = {}
 dict_time_count = {}
 
 for line in sys.stdin:
+    line = line.strip()
+    time,ip,num = line.split('\t')
+    num = int(num)
 
-  time = line[0]
-  ip = line[1][0]
-  num = int(line[1][1])
-
-  try:
-    dict_ip_count[ip] = dict_ip_count.get(ip,0) + num
-        
-  except ValueError:
-      pass
+    try:
+        dict_ip_count[ip] = dict_ip_count.get(ip,0) + num
+    except:
+        pass
 
 
 dict_ip_countlist = list(dict_ip_count.items())
