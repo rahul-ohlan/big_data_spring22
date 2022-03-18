@@ -1,3 +1,3 @@
 #### Description
 
-This repository contains class assignments and projects for big data spring 22 course at fordham university taught by professor ying mao.
+This repository contains class assignments and projects for CISC-5950 Big Data Programming, Spring 22 course at Fordham University taught by Professor Ying Mao.
