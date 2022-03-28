@@ -1,4 +1,4 @@
-#! usr/bin/python
+#!/usr/bin/python
 
 
 import sys
@@ -53,6 +53,4 @@ for key , val in res.items():
 
 for key, val in res.items():
 
-    print(key, "  Worst Defender: -->", val[0][0])
-
-
+    print(key, " <--->", val[0][0])
