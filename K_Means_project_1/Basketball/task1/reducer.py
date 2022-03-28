@@ -18,8 +18,8 @@ for line in sys.stdin:
     gibberish = line[1].split('_')
 
     def_name = gibberish[0]
-    made = gibberish[1]
-    missed = gibberish[2]
+    made = int(gibberish[1])
+    missed = int(gibberish[2])
 
     if player_name not in res:
         res[player_name] = dict()
@@ -53,6 +53,6 @@ for key , val in res.items():
 
 for key, val in res.items():
 
-    print(res[key], "  Worst Defender: -->", val[0][0])
+    print(key, "  Worst Defender: -->", val[0][0])
 
 

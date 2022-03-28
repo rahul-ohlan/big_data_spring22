@@ -9,6 +9,9 @@ for line in sys.stdin:
     line = line.strip()
     line = line.split(',')
 
+    if line[0] == 'GAME_ID': # skip header row
+        continue
+
     shot_clock = line[9]
     player_name = line[21].lower()
     def_first_name = line[16][:-1]
@@ -16,7 +19,7 @@ for line in sys.stdin:
     def_name = def_first_name + " " + def_last_name
     shot_status = line[14]   # made / missed
     
-    if line[0] == 'GAME_ID'  or shot_clock =='':   # skip first row, and, shot_clock is the only column with missing values
+    if  shot_clock =='':   # skip missing values
         continue
 
     if player_name not in mapper_dict:
@@ -43,18 +46,19 @@ for line in sys.stdin:
 for key, val in mapper_dict.items():
     # key is player_name
     # val is dictionary of defenders with individual shot statuses
-    for k,v in val:
+    for k,v in val.items():
         # k is defender's name
         # v is a list of np arrays of short status
         v = np.array(v)
         v = np.sum(v,axis = 0)  # get sum of all those short statuses in one single array
+        val[k] = v
 
 
 # now or dictionary is ready for output to reducer
 
 for key, val in mapper_dict.items():
 
-    for k,v in val:
+    for k,v in val.items():
         
         print(key + "\t" + k+"_"+str(v[0])+"_"+str(v[1])
 
