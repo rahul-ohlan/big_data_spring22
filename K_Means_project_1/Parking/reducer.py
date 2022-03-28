@@ -1,5 +1,4 @@
-#! /c/Users/rahul.ohlan/AppData/Local/Microsoft/WindowsApps/python
-
+#!/usr/bin/python
 from operator import itemgetter
 import sys
 
@@ -24,8 +23,14 @@ for line in sys.stdin:
 
 sorted_years = sorted(year_dict.items(), key = itemgetter(1),reverse=True)
 sorted_types = sorted(type_dict.items(), key = itemgetter(1),reverse=True)
+print()
+print('top 5 years: ')
+for year, freq in sorted_years[0:5]:
+    print(year, freq)
+print()
+print()
+print("**************************************************")
+print()
 
-print('top 5 years: ',end=' ')
-print(sorted_years[0:5])
-print('top 5 car types: ',end=' ')
-print(sorted_types[0:5])
+for car, freq in sorted_types[0:5]:
+    print(car, freq)

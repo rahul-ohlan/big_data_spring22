@@ -1,16 +1,12 @@
-#! /c/Users/rahul.ohlan/AppData/Local/Microsoft/WindowsApps/python
+#!/usr/bin/python
 
 from operator import itemgetter
 import sys
 import re
 import errno
 
-f_handle = open('Parking_Violations_Issued_-_Fiscal_Year_2022.csv')
 
-c = 0
-data = f_handle.readlines()
-
-for line in data:
+for line in sys.stdin:
     line = line.strip()
     line = line.split(',')
 
@@ -27,11 +23,3 @@ for line in data:
 
 
     print(year+"_"+bodyType+"\t"+"1")
-
-
-    if c==10:
-        break
-
-    c+=1
-
-f_handle.close()
