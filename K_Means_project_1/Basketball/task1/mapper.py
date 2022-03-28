@@ -9,8 +9,6 @@ for line in sys.stdin:
     line = line.strip()
     line = line.split(',')
 
-    shot_dist = line[12]
-    close_def_dist = line[18]
     shot_clock = line[9]
     player_name = line[21].lower()
     def_first_name = line[16][:-1]
