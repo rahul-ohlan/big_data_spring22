@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/python
 
 import sys
 import numpy as np
@@ -15,13 +15,24 @@ for line in sys.stdin:
     line = line.strip()
     line = line.split(',')
 
-    shot_dist = line[12]
-    close_def_dist = line[18]
-    shot_clock = line[9]
-    player_name = line[21].lower()
-    
-    if line[0] == 'GAME_ID'  or shot_clock =='':   # skip first row, and, shot_clock is the only column with missing values
+    if line[0] == "GAME_ID":
         continue
+
+    if line[9] == "":
+        continue
+    shot_dist = float(line[12])
+    close_def_dist = float(line[18])
+    shot_clock = float(line[9])
+    player_name = line[21].lower()
+
+    if not line[15].startswith('"'):
+        player_name = line[20].lower()
+        close_def_dist = float(line[17])
+    
+    # Optimization : Removing Outliers
+    if close_def_dist > 15 or shot_dist > 30 :
+        continue
+    
 
     datapoint = np.array([shot_dist,close_def_dist,shot_clock])
 
@@ -60,7 +71,7 @@ for key, val in cluster_map.items():
     s = val[0][1]
     t = val[0][2]
     c = val[1]
-    print(zone+"\t"+str(f)+"_"+str(s)+"_"+str(t)+_str(c))
+    print(zone+"\t"+str(f)+"_"+str(s)+"_"+str(t)+"_"+str(c))
 
     # val is a list which contains two things for each centroid(key) : 1. partial sum of all datapoints
                                                                     #  2. count of all datapoints

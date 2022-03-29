@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/python
 
 import sys
 import numpy as np
@@ -61,11 +61,3 @@ for key, val in res.items():
     print('Player:',key)
     print('Most Favorable Zone:',sorted_hit_rates[0][0])
     print('Hit Rate:',sorted_hit_rates[0][1])
-
-
-
-     
-        
-        
-
-

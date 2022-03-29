@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/python
 
 import sys
 import numpy as np
@@ -14,8 +14,8 @@ for line in sys.stdin:
     centroid = line[0]
 
     datapoints = line[1].split('_')
-    points = list(datapoints[0:3])
-    count = datapoints[3]
+    points = [float(x) for x in datapoints[0:3]]
+    count = float(datapoints[3])
     datapoints = list()
     datapoints.append(points)
     datapoints.append(count)
@@ -42,11 +42,12 @@ for key, val in updated_centroids.items():
         count += v[1]
     updated_centroids[key] = temp/count   # total sum of all points divided by total number of points equals mean of all the datapoints in the cluster
 
-final_centroids = list()
+# final_centroids = list()
 for key, val in updated_centroids.items():
-    final_centroids.append(val)
+    # final_centroids.append(val)
+    print(str(val[0])+"_"+str(val[1])+"_"+str(val[2]))
 
-print(final_centroids)
+# print(final_centroids)
 
 
     

@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/python
 
 import sys
 import numpy as np
@@ -13,14 +13,20 @@ for line in sys.stdin:
     line = line.strip()
     line = line.split(',')
 
-    shot_dist = line[12]
-    close_def_dist = line[18]
-    shot_clock = line[9]
+    if line[0] == "GAME_ID":
+        continue
+
+    if line[9] == "":
+        continue
+    shot_dist = float(line[12])
+    close_def_dist = float(line[18])
+    shot_clock = float(line[9])
     player_name = line[21].lower()
     shot_status = line[14]
 
-    if line[0] == 'GAME_ID'  or shot_clock =='':   # skip first row, and, shot_clock is the only column with missing values
-        continue
+    if not line[15].startswith('"'):
+        player_name = line[20].lower()
+        close_def_dist = float(line[17])
 
     datapoint = np.array([shot_dist,close_def_dist,shot_clock])
 
@@ -81,16 +87,3 @@ for key, val in results.items():
         shots_missed = v[1]
 
         print(player + "\t" + str(zone)+"_"+str(shots_made)+"_"+str(shots_missed))
-
-
-
-
-
-
-
-
-
-
-
-
-
