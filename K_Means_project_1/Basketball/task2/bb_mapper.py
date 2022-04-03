@@ -1,17 +1,17 @@
-#!/usr/bin/python
+#!/home/rahul-ohlan/anaconda3/bin/python
 
 import sys
 import numpy as np
 from numpy.linalg import norm
 
 
-c1 = np.array(sys.argv[1].split()).astype(np.float64)     # any 4 random data points
-c2 = np.array(sys.argv[2].split()).astype(np.float64)
+c1 = np.array(sys.argv[1].split()).astype(np.float64)       # any 4 random data points
+c2 = np.array(sys.argv[2].split()).astype(np.float64)   
 c3 = np.array(sys.argv[3].split()).astype(np.float64)
 c4 = np.array(sys.argv[4].split()).astype(np.float64)
 
 centroids = np.array([c1,c2,c3,c4])
-# but elements of centoroids are strings I guess
+
 cluster_map = dict()
 
 for line in sys.stdin:
