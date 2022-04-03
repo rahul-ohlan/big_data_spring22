@@ -1,4 +1,4 @@
-#!/home/rahul-ohlan/anaconda3/bin/python
+#!/usr/bin/python
 
 import sys
 import numpy as np
