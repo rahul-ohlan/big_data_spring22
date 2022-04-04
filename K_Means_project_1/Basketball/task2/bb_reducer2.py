@@ -12,7 +12,7 @@ for line in sys.stdin:
     # line is like james harden    0_54_26
 
     line = line.strip()
-    line = line.split()
+    line = line.split("\t")
     player_name = line[0]
     scores = line[1]
     scores = scores.strip()
@@ -44,7 +44,7 @@ for key, val in res.items():
 
         made = v[0]
         missed = v[1]
-        hit_rate = made/(made+missed)
+        hit_rate = np.around(made/(made+missed),decimals=3)
         val[k] = hit_rate
 
 
