@@ -10,7 +10,7 @@ hadoop fs -rm -r /task2
 hadoop fs -mkdir /task2
 hadoop fs -put ./shot_logs.csv /task2
 
-for iter in {0..3};
+for iter in {0..100};
 do
 
 

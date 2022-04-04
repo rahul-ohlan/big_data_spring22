@@ -13,6 +13,7 @@ for line in sys.stdin:
 
     line = line.strip()
     line = line.split("\t")
+
     player_name = line[0]
     scores = line[1]
     scores = scores.strip()
@@ -33,6 +34,7 @@ for line in sys.stdin:
     res[player_name][nearest_centroid] += np.array([points_made,points_missed])
 
 
+
 # now we finally have aggregate of all the points made and missed for each player in each zone
 # now calculate and report the hit rate
 
@@ -42,11 +44,10 @@ for key, val in res.items():
     # val = { 0 : [made,missed], 1 : ...}
     for k,v in val.items():
 
-        made = v[0]
-        missed = v[1]
-        hit_rate = np.around(made/(made+missed),decimals=3)
+        made = float(v[0])
+        missed = float(v[1])
+        hit_rate = np.around(made/(made+missed),decimals=4)
         val[k] = hit_rate
-
 
 # now we have hit rate in each zone for each of the four players
 # report the zones with maximum hit rates
