@@ -47,8 +47,7 @@ for key, val in updated_centroids.items():
 
 # temp is an array of three points for each cluster
 # need to convert it to a string
-fc = sorted(updated_centroids.items(), key = itemgetter(0))
-print('rahul ohlan') 
+fc = sorted(updated_centroids.items(), key = itemgetter(0)) 
 for item in fc:
 
     print(str(item[1]))

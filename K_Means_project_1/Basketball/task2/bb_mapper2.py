@@ -4,6 +4,13 @@ import sys
 import numpy as np
 from numpy.linalg import norm
 
+
+c1 = sys.argv[1].split()
+c2 = sys.argv[2].split()
+c3 = sys.argv[3].split()
+c4 = sys.argv[4].split()
+
+
 final_centroids = list(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
 
 results = dict()
