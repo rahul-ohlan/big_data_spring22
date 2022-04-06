@@ -10,6 +10,9 @@ c1 = np.array(sys.argv[1].split()).astype(np.float64)       # any 6 random data 
 c2 = np.array(sys.argv[2].split()).astype(np.float64)   
 c3 = np.array(sys.argv[3].split()).astype(np.float64)
 c4 = np.array(sys.argv[4].split()).astype(np.float64)
+c5 = np.array(sys.argv[5].split()).astype(np.float64)
+c6 = np.array(sys.argv[6].split()).astype(np.float64)
+c7 = np.array(sys.argv[7].split()).astype(np.float64)
 
 
 pat_st_name = re.compile(r'^W\s[5-7][0-9]')    # to fetch W 57 from street name

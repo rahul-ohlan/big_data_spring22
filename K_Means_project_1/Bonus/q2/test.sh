@@ -1,6 +1,6 @@
 #!/bin/bash
 
-centroids=("34930 11110 0" "35170 13610 10910" "35290 11710 10810" "34810 14510 15710")
+centroids=("34930 11110 0" "35170 13610 10910" "35290 11710 10810" "34810 14510 15710" "34890 10810 44990" "34790 4081 14510" "35230 14190 1110")
 
 start-all.sh
 
@@ -8,7 +8,7 @@ hdfs dfsadmin -safemode leave
 
 hadoop fs -rm -r /task2
 hadoop fs -mkdir /task2
-hadoop fs -put ./shot_logs.csv /task2
+hadoop fs -put ./Parking_Violations_Issued_-_Fiscal_Year_2022.csv /task2
 
 for iter in {0..100};
 do
@@ -22,9 +22,9 @@ do
 
 
 	hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.1.jar \
-		-file ./bb_mapper.py -mapper ./"bb_mapper.py \"${centroids[0]}\" \"${centroids[1]}\" \"${centroids[2]}\" \"${centroids[3]}\"" \
-		-file ./bb_reducer.py -reducer ./bb_reducer.py \
-		-input /task2/shot_logs.csv \
+		-file ./mapper.py -mapper ./"mapper.py \"${centroids[0]}\" \"${centroids[1]}\" \"${centroids[2]}\" \"${centroids[3]}\" \"${centroids[4]}\" \"${centroids[5]}\" \"${centroids[6]}\"" \
+		-file ./reducer.py -reducer ./reducer.py \
+		-input /task2/Parking_Violations_Issued_-_Fiscal_Year_2022.csv \
 		-output /task2/output2
 
 
@@ -91,9 +91,9 @@ hdfs dfsadmin -safemode leave
 
 
 hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.1.jar \
-	-file ./bb_mapper2.py -mapper ./"bb_mapper2.py \"${centroids[0]}\" \"${centroids[1]}\" \"${centroids[2]}\" \"${centroids[3]}\"" \
-	-file ./bb_reducer2.py -reducer ./bb_reducer2.py \
-	-input /task2/shot_logs.csv \
+	-file ./mapper2.py -mapper ./"mapper2.py \"${centroids[0]}\" \"${centroids[1]}\" \"${centroids[2]}\" \"${centroids[3]}\" \"${centroids[4]}\" \"${centroids[5]}\" \"${centroids[6]}\"" \
+	-file ./reducer2.py -reducer ./reducer2.py \
+	-input /task2/Parking_Violations_Issued_-_Fiscal_Year_2022.csv \
 	-output /task2/output3
 
 
