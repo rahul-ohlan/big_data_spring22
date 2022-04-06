@@ -6,7 +6,7 @@ from numpy.linalg import norm
 import re
 
 
-c1 = np.array(sys.argv[1].split()).astype(np.float64)       # any 6 random data points
+c1 = np.array(sys.argv[1].split()).astype(np.float64)       # any 7 random data points
 c2 = np.array(sys.argv[2].split()).astype(np.float64)   
 c3 = np.array(sys.argv[3].split()).astype(np.float64)
 c4 = np.array(sys.argv[4].split()).astype(np.float64)
@@ -18,7 +18,7 @@ c7 = np.array(sys.argv[7].split()).astype(np.float64)
 pat_st_name = re.compile(r'^W\s[5-7][0-9]')    # to fetch W 57 from street name
 pat_st_num = re.compile((r'\d\d'))             # to fetch 57 from street name
 
-centroids = np.array([c1,c2,c3,c4])
+centroids = np.array([c1,c2,c3,c4,c5,c6,c7])
 
 cluster_map = dict()
 
@@ -32,14 +32,19 @@ for line in sys.stdin:
 
     precinct = int(line[14])                # Manhattan North has precinct  = 20 (fetch the 0.5 mile radius)
     street_name = line[24]
-    time = line[19]
+    
+    try:
+        time = line[19]
+        time = time.strip()
 
-    if len(time)!=5:                      # must be a 5-character string
+        if len(time)!=5 and "." in time:                      # must be a 5-character string
+            continue
+
+        hours = int(time[0:4])                # example : 1030
+        shift = time[4]                       # Am or Pm
+    
+    except:
         continue
-
-    hours = int(time[0:4])                # example : 1030
-    shift = time[4]                       # Am or Pm
-
 
 
     # Data Filters:

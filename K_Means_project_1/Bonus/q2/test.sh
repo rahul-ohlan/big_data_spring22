@@ -1,6 +1,7 @@
 #!/bin/bash
 
-centroids=("34930 11110 0" "35170 13610 10910" "35290 11710 10810" "34810 14510 15710" "34890 10810 44990" "34790 4081 14510" "35230 14190 1110")
+
+centroids=("34930 11110 12345" "35170 13610 10910" "35290 11710 10810" "34810 14510 15710" "34890 10810 44990" "34790 40812 14510" "35230 14190 11107")
 
 start-all.sh
 
@@ -84,7 +85,7 @@ done
 
 hadoop fs -rm -r /task2
 hadoop fs -mkdir /task2
-hadoop fs -put ./shot_logs.csv /task2
+hadoop fs -put ./Parking_Violations_Issued_-_Fiscal_Year_2022.csv /task2
 hdfs dfsadmin -safemode leave
 
 # starting the second map reduce phase
