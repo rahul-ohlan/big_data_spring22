@@ -4,6 +4,5 @@ This repository contains class assignments and projects for CISC-5950 Big Data P
 
 Links to Datasets used:
 
-1, NYC Parking Data : https://data.cityofnewyork.us/City-Government/Parking-Violations-Issued-Fiscal-Year-2022/pvqr-7yc4
-
+1. NYC Parking Data : https://data.cityofnewyork.us/City-Government/Parking-Violations-Issued-Fiscal-Year-2022/pvqr-7yc4
 2. NBA Shot Logs Data : https://www.kaggle.com/datasets/dansbecker/nba-shot-logs
