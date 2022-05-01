@@ -79,7 +79,7 @@ if __name__ == "__main__":
     required_features = ['SHOT_DIST', 'CLOSE_DEF_DIST', 'SHOT_CLOCK']
     assembler = VectorAssembler(inputCols=required_features, outputCol = 'features')
 
-    lebron_james_ = assembler.transform(spark_df)
+    lebron_james_ = assembler.transform(lebron_james)
     james_harden_ = assembler.transform(james_harden)
     chris_paul_ = assembler.transform(chris_paul)
     stephen_curry_ = assembler.transform(stephen_curry)
